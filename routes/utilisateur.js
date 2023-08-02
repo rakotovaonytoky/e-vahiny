@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const User = require("../model/userShema");
 const { connectToDatabase } = require('./dbConnection');
 
 const { DateTime } = require('luxon');
@@ -26,7 +25,7 @@ router.post('/login', async function(req, res, next) {
         console.log(test);
 
         if (test == null){
-
+          return res.status(401).json({ result:"error",message: "login ou mot de passe erroner" });
         }else{
 
           // Get the current date and time

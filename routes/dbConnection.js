@@ -14,11 +14,11 @@ const connectionParams = {
 
 let client;
 let isConnected = false;
-
+let dbo;
 const connectToDatabase = async () => {
   if (isConnected) {
     console.info("Already connected to the database.");
-    return { client, mongoose };
+    return { client, mongoose,dbo };
   }
 
   try {
