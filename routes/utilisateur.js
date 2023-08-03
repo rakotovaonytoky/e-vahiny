@@ -21,13 +21,13 @@ router.post('/login', async function(req, res, next) {
         console.log(login);
 
         var collection =  dbo.collection("utilisateur");
-        var test = await collection.findOne({ login: login, mdp: mdp});
+      var test = await collection.findOne({ email: login, mdp: mdp});
         console.log(test);
-
+      let data = {}
         if (test == null){
           return res.status(401).json({ result:"error",message: "login ou mot de passe erroner" });
         }else{
-
+           data = { "_id": test._id, "nom": test.nom, "prenom": test.prenom, "email": test.email }
           // Get the current date and time
           const currentDate = DateTime.local();
 
@@ -51,9 +51,10 @@ router.post('/login', async function(req, res, next) {
             }
           });
           await mongoose.disconnect();
-        }
+           user = {}
+      }
 
-        return res.status(200).json({ message: "mety",token:test});
+      return res.status(200).json({ message: "mety", token: test, "data": data });
         
       } catch (error) {
         // Handle the error here
