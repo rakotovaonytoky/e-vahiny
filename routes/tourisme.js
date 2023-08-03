@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { MongoClient, ObjectId } = require('mongodb');
 
 const { connectToDatabase } = require('./dbConnection');
 
@@ -16,7 +17,20 @@ router.get('/all',async function(req, res, next) {
 
     console.log(listeTourisme);
     
-    return res.status(200).json({ message: "reussie",categories :listeTourisme});
+    return res.status(200).json({ message: "reussie",tourismes :listeTourisme});
+});
+
+router.get('/byCateg',async function(req, res, next) {
+
+    const { client, mongoose,dbo } = await connectToDatabase();
+    var categId = req.body.categ;
+    // categId = new ObjectId(categId);
+    const collection = dbo.collection("tourisme");
+    var listeTourisme = await collection.find({categorie:categId}).toArray();
+
+    console.log(listeTourisme);
+    
+    return res.status(200).json({ message: "reussie",tourismes :listeTourisme});
 });
 
 module.exports = router;
