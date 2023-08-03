@@ -17,7 +17,7 @@ router.get('/all',async function(req, res, next) {
 
     console.log(listeTourisme);
     
-    return res.status(200).json({ message: "reussie",tourismes :listeTourisme});
+    return res.status(200).json({ message: "mety",tourismes :listeTourisme});
 });
 
 router.get('/byCateg',async function(req, res, next) {
@@ -30,7 +30,7 @@ router.get('/byCateg',async function(req, res, next) {
 
     console.log(listeTourisme);
     
-    return res.status(200).json({ message: "reussie",tourismes :listeTourisme});
+    return res.status(200).json({ message: "mety",tourismes :listeTourisme});
 });
 
 module.exports = router;

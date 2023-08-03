@@ -16,7 +16,7 @@ router.get('/all',async function(req, res, next) {
 
     console.log(listeCategorie);
     
-    return res.status(200).json({ message: "reussie",categories :listeCategorie});
+    return res.status(200).json({ message: "mety",categories :listeCategorie});
 });
 
 module.exports = router;
