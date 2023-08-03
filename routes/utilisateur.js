@@ -5,13 +5,12 @@ const { connectToDatabase } = require('./dbConnection');
 const { DateTime } = require('luxon');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
     return res.status(200).json({ message: "here is the message"});
 });
 
 
 router.post('/login', async function(req, res, next) {
-  console.log("here");
 
     try {
         const { client, mongoose,dbo } = await connectToDatabase();
@@ -22,7 +21,6 @@ router.post('/login', async function(req, res, next) {
 
         var collection =  dbo.collection("utilisateur");
         var test = await collection.findOne({ login: login, mdp: mdp});
-        console.log(test);
 
         if (test == null){
           return res.status(401).json({ result:"error",message: "login ou mot de passe erroner" });
@@ -41,7 +39,6 @@ router.post('/login', async function(req, res, next) {
             utilisateur: test._id,
             date:futureDate.toFormat('yyyy-MM-dd'),
           };
-          console.log(newToken);
           
           var test = await collectionToken.insertOne(newToken, function(err, result) {
             if (err) {

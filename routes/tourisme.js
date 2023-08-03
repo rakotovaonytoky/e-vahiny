@@ -11,12 +11,12 @@ router.get('/all',async function(req, res, next) {
 
     const { client, mongoose,dbo } = await connectToDatabase();
 
-    const collection = dbo.collection("categorie");
-    var listeCategorie = await collection.find({}).toArray();
+    const collection = dbo.collection("tourisme");
+    var listeTourisme = await collection.find({}).toArray();
 
-    console.log(listeCategorie);
+    console.log(listeTourisme);
     
-    return res.status(200).json({ message: "reussie",categories :listeCategorie});
+    return res.status(200).json({ message: "reussie",categories :listeTourisme});
 });
 
 module.exports = router;
