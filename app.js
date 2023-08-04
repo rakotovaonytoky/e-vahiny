@@ -9,12 +9,12 @@ var usersRouter = require('./routes/users');
 var utilisateurRouter = require('./routes/utilisateur');
 var categorieRouter = require('./routes/categorie');
 var tourismeRouter = require('./routes/tourisme');
-
 var app = express();
 
 // view engine setup
 
 app.use(cors())
+app.disable('etag');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
